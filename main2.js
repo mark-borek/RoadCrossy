@@ -45,7 +45,6 @@ function main(){
     
     //creates the camera and sets its initial placement
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set(0,300, -310);
     camera.rotation.set(60*Math.PI/180, -180*Math.PI/180, 0);
     camera.updateProjectionMatrix();
     
@@ -109,6 +108,7 @@ function main(){
     generateLaneArray(800);  
     lane();
     playerObject();
+    camera.position.set(0,300, player.position.z -180);
     carAnimate();
     truckAnimate();
 
@@ -445,7 +445,7 @@ function main(){
                 player = new  THREE.Mesh(
                     new THREE.BoxGeometry(30,30,50,50,50,50),
                     //new THREE.MeshLambertMaterial({visible : true, color: 'gray', wireframe: true})
-                    new THREE.MeshLambertMaterial({map: textureLoader.load('cow.jpg')})
+                    new THREE.MeshLambertMaterial({map: textureLoader.load('')})
                 );   
         
         
@@ -459,12 +459,9 @@ function main(){
     
     // player movement animation functions below (right, left, up, and back)
     function right(){
-                var playerPosition = new THREE.Vector3();
-                playerPosition.setFromMatrixPosition(player.matrixWorld);
-
-                var start = {x:playerPosition.x, y:0, z:playerPosition.z};
-                var end = {x : (playerPosition.x-80), y:0, z:playerPosition.z};
-                var tweenR = new TWEEN.Tween(start)
+                let start = {x:player.position.x, y:0, z:player.position.z};
+                let end = {x : (player.position.x-80), y:0, z:player.position.z};
+                let tweenR = new TWEEN.Tween(start)
                 .to(end, 150)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
@@ -509,13 +506,8 @@ function main(){
 
 
     function left(){
-                let playerPosition = new THREE.Vector3();
-                playerPosition.setFromMatrixPosition(player.matrixWorld);
-
-
-                let start = {x:playerPosition.x, y:0, z:playerPosition.z};
-                let end = {x : (playerPosition.x+80), y:10, z:playerPosition.z};
-                //let end = {x : fakePosition.x, y: 0, z :0};
+                let start = {x:player.position.x, y:0, z:player.position.z};
+                let end = {x : (player.position.x+80), y:10, z:player.position.z};
                 let tweenL = new TWEEN.Tween(start)
                 .to(end, 150)
                 .easing(TWEEN.Easing.Quadratic.Out)
@@ -557,19 +549,16 @@ function main(){
             }
 
     function up(){
-                var playerPosition = new THREE.Vector3();
-                playerPosition.setFromMatrixPosition(player.matrixWorld);
-
-                var camStart = {x:0, y:300, z:(playerPosition.z - 200)};
-                var camEnd = {x :0, y:300, z:(playerPosition.z - 180)};
-                var tweenCam = new TWEEN.Tween(camStart)
-                .to(camEnd, 2000)
+                let camStart = {x:0, y:300, z:(camera.position.z)};
+                let camEnd = {x :0, y:300, z:(player.position.z - 180)};
+                let tweenCam = new TWEEN.Tween(camStart)
+                .to(camEnd, 1500)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
 
-                var start = {x:playerPosition.x, y:0, z:playerPosition.z};
-                var end = {x :playerPosition.x, y:0, z:(playerPosition.z + 80)};
-                var tweenUp = new TWEEN.Tween(start)
+                let start = {x:player.position.x, y:0, z:player.position.z};
+                let end = {x :player.position.x, y:0, z:(player.position.z + 80)};
+                let tweenUp = new TWEEN.Tween(start)
                 .to(end, 150)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
@@ -616,20 +605,16 @@ function main(){
             }
 
     function  back(){
-                var playerPosition = new THREE.Vector3();
-                playerPosition.setFromMatrixPosition(player.matrixWorld);
-
-
-                var start = {x:playerPosition.x, y:0, z:playerPosition.z};
-                var end = {x :playerPosition.x, y:0, z:(playerPosition.z - 80)};
-                var tweenBack = new TWEEN.Tween(start)
+                let start = {x:player.position.x, y:0, z:player.position.z};
+                let end = {x :player.position.x, y:0, z:(player.position.z - 80)};
+                let tweenBack = new TWEEN.Tween(start)
                 .to(end,150)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
 
-                var camStart = {x:0, y:300, z:(playerPosition.z - 180)};
-                var camEnd = {x :0, y:300, z:(playerPosition.z - 200)};
-                var tweenCamera = new TWEEN.Tween(camStart)
+                let camStart = {x:0, y:300, z:(camera.position.z)};
+                let camEnd = {x :0, y:300, z:(player.position.z - 200)};
+                let tweenCamera = new TWEEN.Tween(camStart)
                 .to(camEnd, 5000)
                 .easing(TWEEN.Easing.Quadratic.InOut)
                 .start();
@@ -663,9 +648,7 @@ function main(){
                 });
 
                 tweenCamera.onUpdate(function(){
-                    //if(!bool){
                         camera.position.z = camStart.z;
-                    //}
                 });
 
                 tweenBack.onComplete(function(){
