@@ -393,8 +393,8 @@ function main(){
     function truckAnimate(){
 
            function truckTween(x,time){
-                    var start = {x: 700}; 
-                    var end =   {x: -700};
+                    var start = {x: 800}; 
+                    var end =   {x: -800};
                     var truckForward = new TWEEN.Tween(start)
                     .to(end,time)
                     .repeat(Infinity)
@@ -415,8 +415,8 @@ function main(){
     function  carAnimate(){
       
             function carTween(x,time){
-                    var start = {x: -600}; 
-                    var end =   {x: 600};
+                    var start = {x: -800}; 
+                    var end =   {x: 800};
                     var carForward = new TWEEN.Tween(start)
                     .to(end,time)
                     .repeat(Infinity)
