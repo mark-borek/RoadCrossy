@@ -445,7 +445,7 @@ function main(){
                 player = new  THREE.Mesh(
                     new THREE.BoxGeometry(30,30,50,50,50,50),
                     //new THREE.MeshLambertMaterial({visible : true, color: 'gray', wireframe: true})
-                    new THREE.MeshLambertMaterial({map: textureLoader.load('')})
+                    new THREE.MeshLambertMaterial({map: textureLoader.load('cow.jpg')})
                 );   
         
         
