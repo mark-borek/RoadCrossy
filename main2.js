@@ -326,7 +326,7 @@ function main(){
             );
 
             //number of trees in one strip
-            var treeCount = Math.floor((Math.random() * 3) + 1);
+            var treeCount = Math.floor((Math.random() * 4) + 1);
            //number of trees total
             var treeNumber = 0;
             treeMatrix[x] = [];
