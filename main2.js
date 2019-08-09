@@ -117,7 +117,8 @@ function main(){
         requestAnimationFrame(animate);
         TWEEN.update();
         //stats.update();
-        setUpKeyControls();
+        setupKeyControls();
+        setupSwipeControls();
         score.innerHTML = `${Math.floor(player.position.z / 80) + 2}`;
         renderer.render(scene, camera);
         runOver();
@@ -677,8 +678,7 @@ function main(){
         }
     
     // sets up the key controls for the player movement using the arrow keys
-    function setUpKeyControls(){
-                    var bool;
+    function setupKeyControls(){
                     document.onkeyup = function(e){                   
                            if(player.position.x == 320){
                                 switch(e.keyCode){
@@ -757,6 +757,40 @@ function main(){
 
                     }
                 }
+
+
+    function setupSwipeControls(){
+        // swiped-left
+        document.addEventListener('swiped-left', function(e) {
+            if(-320 <= player.position.x && player.position.x < 320){
+                if(done)
+                    left;
+            }
+        });
+
+        // swiped-right
+        document.addEventListener('swiped-right', function(e) {
+            if(-320 < player.position.x && player.position.x <= 320){
+                if(done)
+                    right();
+            }
+
+        });
+
+        // swiped-up
+        document.addEventListener('swiped-up', function(e) {
+            up();
+        });
+
+        // swiped-down
+        document.addEventListener('swiped-down', function(e) {
+            if(player.position.z > -160){
+                if(done)
+                    back();
+            }
+        });
+
+    }
 
     // function which displays an alert when the player object has collided with a car/truck object
     // uses the hisCount variable to display this alert only once and then reloads the page
