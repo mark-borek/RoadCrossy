@@ -326,7 +326,7 @@ function main(){
             );
 
             //number of trees in one strip
-            var treeCount = Math.floor((Math.random() * 4) + 1);
+            var treeCount = Math.floor((Math.random() * 3) + 1);
            //number of trees total
             var treeNumber = 0;
             treeMatrix[x] = [];
@@ -683,35 +683,44 @@ function main(){
                            if(player.position.x == 320){
                                 switch(e.keyCode){
                              //up arrow
-                             case 38:
+                             case 38,87:
+                                if(done)
                                     up();
-                                    break;  
+                                break;  
 
                             //right arrow
-                            case 39:
-                                right();
+                            case 39,68:
+                                if(done)
+                                    right();
                                 break;
                             //down arrow
-                            case 40:       
-                                back();
+                            case 40,83: 
+                                if(done){
+                                   if(player.position.z > -160)
+                                    back(); 
+                                }
                                 break;
-
                             }
                            }
                         else if(player.position.x == -320){
                               switch(e.keyCode){
                             //left arrow                        
-                            case 37:     
-                                left();
+                            case 37,65: 
+                                if(done)
+                                    left();
                                 break;
                             //up arrow
-                            case 38:
-                                up();
+                            case 38,87:
+                                if(done)
+                                    up();
                                 break;  
 
                             //down arrow
-                            case 40:
-                                back();
+                            case 40,83:
+                                if(done){
+                                    if(player.position.z > -160)
+                                        back();
+                                }
                                 break;
                             }
                         }
@@ -719,25 +728,27 @@ function main(){
 
                         switch (e.keyCode){
                                //left arrow                        
-                            case 37:
+                            case 37,65:
                                 if(done)
                                     left();
                                 break;
                             //up arrow
-                            case 38:
+                            case 38,87:
                                 if(done)
                                     up();
                                 break;
 
                             //right arrow
-                            case 39:
+                            case 39,68:
                                 if(done)
                                     right();
                                 break;
                             //down arrow
-                            case 40:
-                                if(done)
-                                    back();
+                            case 40,83:
+                                if(done){
+                                    if(player.position.z > -160)
+                                        back();
+                                }
                                 break;
                             }
 
