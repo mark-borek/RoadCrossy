@@ -108,7 +108,13 @@ function main(){
     generateLaneArray(800);  
     lane();
     playerObject();
-    camera.position.set(0,300, player.position.z -180);
+    if(window.innerWidth > window.innerHeight){
+        camera.position.set(0,300, player.position.z -180);
+    }
+    else{
+        camera.position.set(0,400, player.position.z - 180);
+    }
+    
     carAnimate();
     truckAnimate();
 
@@ -682,19 +688,33 @@ function main(){
                     document.onkeyup = function(e){                   
                            if(player.position.x == 320){
                                 switch(e.keyCode){
-                             //up arrow
-                             case 38,87:
+                             //up arrow/ W
+                             case 38:
+                                if(done)
+                                    up();
+                                break;  
+                            case 87:
                                 if(done)
                                     up();
                                 break;  
 
-                            //right arrow
-                            case 39,68:
+                            //right arrow/ D
+                            case 39:
                                 if(done)
                                     right();
                                 break;
-                            //down arrow
-                            case 40,83: 
+                            case 68:
+                                if(done)
+                                    right();
+                                break;
+                            //down arrow/ S
+                            case 40: 
+                                if(done){
+                                   if(player.position.z > -160)
+                                    back(); 
+                                }
+                                break;
+                            case 83: 
                                 if(done){
                                    if(player.position.z > -160)
                                     back(); 
@@ -704,19 +724,33 @@ function main(){
                            }
                         else if(player.position.x == -320){
                               switch(e.keyCode){
-                            //left arrow                        
-                            case 37,65: 
+                            //left arrow/ A                      
+                            case 37: 
                                 if(done)
                                     left();
                                 break;
-                            //up arrow
-                            case 38,87:
+                            case 65: 
+                                if(done)
+                                    left();
+                                break;
+                            //up arrow/ W
+                            case 38:
                                 if(done)
                                     up();
-                                break;  
+                                break; 
+                            case 87:
+                                if(done)
+                                    up();
+                                break;
 
-                            //down arrow
+                            //down arrow/ S
                             case 40,83:
+                                if(done){
+                                    if(player.position.z > -160)
+                                        back();
+                                }
+                                break;
+                            case 83:
                                 if(done){
                                     if(player.position.z > -160)
                                         back();
@@ -727,24 +761,42 @@ function main(){
                         else if((player.position.x < 320 && player.position.x > -320) || (player.position.x ==0))  {
 
                         switch (e.keyCode){
-                               //left arrow                        
-                            case 37,65:
+                               //left arrow/ A                        
+                            case 37:
                                 if(done)
                                     left();
                                 break;
-                            //up arrow
-                            case 38,87:
+                            case 65:
+                                if(done)
+                                    left();
+                                break;
+                            //up arrow/ W
+                            case 38:
+                                if(done)
+                                    up();
+                                break;
+                            case 87:
                                 if(done)
                                     up();
                                 break;
 
-                            //right arrow
-                            case 39,68:
+                            //right arrow/ D
+                            case 39:
                                 if(done)
                                     right();
                                 break;
-                            //down arrow
-                            case 40,83:
+                            case 68:
+                                if(done)
+                                    right();
+                                break;
+                            //down arrow/ S
+                            case 40:
+                                if(done){
+                                    if(player.position.z > -160)
+                                        back();
+                                }
+                                break;
+                            case 83:
                                 if(done){
                                     if(player.position.z > -160)
                                         back();
