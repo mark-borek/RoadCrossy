@@ -31,7 +31,7 @@ var treeMatrix = [];
 
 function main(){
     
-    //var stats = initStats();
+    var stats = initStats();
     var carsArray = [];
     //creates the scene and gives it a skyblue background
     scene = new THREE.Scene();
@@ -70,7 +70,7 @@ function main(){
     score.style.height = 7+'%';//50 + 'px';
     score.style.backgroundColor = "white";
     score.style.top = 0 + '%';
-    score.style.left = 2 + '%';
+    score.style.right = 2 + '%';
     score.style.fontSize = 300 + '%';
     score.style.fontFamily = 'Sans-serif';
     document.body.appendChild(score);      
@@ -110,6 +110,7 @@ function main(){
     playerObject();
     if(window.innerWidth > window.innerHeight){
         camera.position.set(0,300, player.position.z -180);
+        
     }
     else{
         camera.position.set(0,475, player.position.z - 180);
@@ -122,7 +123,7 @@ function main(){
     function animate(){
         requestAnimationFrame(animate);
         TWEEN.update();
-        //stats.update();
+        stats.update();
         setupKeyControls();
         setupSwipeControls();
         score.innerHTML = `${Math.floor(player.position.z / 80) + 2}`;
