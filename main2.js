@@ -112,7 +112,7 @@ function main(){
         camera.position.set(0,300, player.position.z -180);
     }
     else{
-        camera.position.set(0,400, player.position.z - 180);
+        camera.position.set(0,425, player.position.z - 180);
     }
     
     carAnimate();
