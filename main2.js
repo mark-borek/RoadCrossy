@@ -758,13 +758,13 @@ function main(){
                     }
                 }
 
-
+    // function that allows user to play this game on mobile using swipe events
     function setupSwipeControls(){
         // swiped-left
         document.addEventListener('swiped-left', function(e) {
             if(-320 <= player.position.x && player.position.x < 320){
                 if(done)
-                    left;
+                    left();
             }
         });
 
