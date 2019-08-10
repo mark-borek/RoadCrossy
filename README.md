@@ -1,5 +1,7 @@
 # RoadCrossy
 
+MARK BOREK 2019
+
 ABOUT: 
 
 Road Crossy is a road crossing game where the user attempts to pass each lane of the road without being hit by a car. I created this as part of javascript class that I took. It uses the three.js and tween.js libraries to bring the world to life. It greatly improved my understanding of javascript and it was fun to learn about the three.js and tween.js libaries. 
