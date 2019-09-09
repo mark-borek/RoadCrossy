@@ -80,7 +80,7 @@ function main(){
     //for..of https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
     //function that is used to generate an array with road and grass randomly assigned. It is used later in when the road and grass are actually created. 
     function generateLaneArray(size){
-        for(x of size){
+        for(let x= 0; x < size; x++){
             if((Math.floor((Math.random() * 2) + 1)) === 1)
                 lanes[x] = 'road';
             else
@@ -414,7 +414,7 @@ function main(){
                 }); 
             }
 
-            for(i in trucksArray.length){    
+            for(let i = 0; i < trucksArray.length; i++){    
                 var rand = Math.floor(Math.random()*(8000-5000+1)+5000);
                 truckTween(i, rand);
             }
@@ -435,7 +435,7 @@ function main(){
                 }); 
             }
 
-            for(i in carsArray.length){    
+            for(let i = 0; i < carsArray.length; i++){    
                 var rand = Math.floor(Math.random()*(5000-1000+1)+1000);
                 carTween(i, rand);
             }
