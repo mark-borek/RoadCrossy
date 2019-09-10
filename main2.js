@@ -64,7 +64,6 @@ function main(){
     scene.add(backLight);
     
     // score display
-    //Best practice is to move this to a stylesheet
     var score = document.createElement('div');
     score.style.position = 'absolute';
     score.style.width = 7+'%';//100 + 'px';
@@ -77,7 +76,7 @@ function main(){
     document.body.appendChild(score);      
     
     
-    //for..of https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+    
     //function that is used to generate an array with road and grass randomly assigned. It is used later in when the road and grass are actually created. 
     function generateLaneArray(size){
         for(let x= 0; x < size; x++){
@@ -88,11 +87,11 @@ function main(){
         }
         return lanes;
     }
-     //Can use an arrow function: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+    
      //function that uses the lanes[] to call the grass() and road() functions, which are placed in the scene
    function lane(){
        let count = 0;
-        lanes.forEach((x) => {
+        lanes.forEach(function(x){
             if(x === 'road'){
                 let stripOfRoad = new road(count);
                 count++;
@@ -135,7 +134,7 @@ function main(){
     animate();
     
 }
-    //should abstract out these classes into their own files, helps with readability and mantainability 
+
     //function that generates a strip of road and either one or 2 trucks for that lane 
    class road{
        
@@ -408,8 +407,8 @@ function main(){
                     .to(end,time)
                     .repeat(Infinity)
                     .start();
-                //arrow function
-                truckForward.onUpdate(()=>{
+
+                truckForward.onUpdate(function(){
                     trucksArray[x].position.x = start.x;
                 }); 
             }
@@ -417,6 +416,7 @@ function main(){
             for(let i = 0; i < trucksArray.length; i++){    
                 var rand = Math.floor(Math.random()*(8000-5000+1)+5000);
                 truckTween(i, rand);
+
             }
         }
     // animation loop for the cars    
@@ -438,7 +438,10 @@ function main(){
             for(let i = 0; i < carsArray.length; i++){    
                 var rand = Math.floor(Math.random()*(5000-1000+1)+1000);
                 carTween(i, rand);
+
             }
+
+
         }
 
     
@@ -666,7 +669,7 @@ function main(){
 
     //function which tests for collisions between the player object and vehicles (which are contained in the collidableVehicle array)
     function collisionVehicle(){
-            for(vertexIndex in player.geometry.vertices.length){
+            for(var vertexIndex = 0; vertexIndex < player.geometry.vertices.length; vertexIndex++){
                     var localVertex = player.geometry.vertices[vertexIndex].clone();
                     var globalVertex = localVertex.applyMatrix4(player.matrix);
                     var directionVector = globalVertex.sub(player.position);
@@ -677,7 +680,6 @@ function main(){
 
                         return true;
                     }
-                        //looks like unreachable code?
                         return false;
                 }
         }
