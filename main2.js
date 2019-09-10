@@ -852,7 +852,7 @@ function main(){
                 if(hitCount == 1){
                    setTimeout(function(){
                        console.log(Math.floor(player.position.z / 80));
-                       alert("MOOOOOOVE OUT OF THE WAY A LITTLE QUICKER NEXT TIME. YOUR SCORE WAS " + (Math.floor(player.position.z / 80)+2));
+                       alert("MOOOOOOVE OUT OF THE WAY A LITTLE QUICKER NEXT TIME. YOU'RE SCORE WAS " + (Math.floor(player.position.z / 80)+2));
                        location.reload();
                    }, 20);
 
